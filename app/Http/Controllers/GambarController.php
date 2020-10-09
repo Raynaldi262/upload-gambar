@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Gambar;
 use Exception;
+// use Intervention\Image\ImageManagerStatic as Image;
 
 class GambarController extends Controller
 {
@@ -80,6 +81,8 @@ class GambarController extends Controller
 
         $path = storage_path('app\images\\' . $name);
 
+        $asd = Image::make(request()->file('photo'))->resize(300, 200)->save('foo.jpg');
+
         $store = $request->image->storeAs('images', $name); // masukkan gambar ke folder images
 
         if (!$request->session()->exists('data')) {
@@ -100,10 +103,5 @@ class GambarController extends Controller
             'counter' => 1,
             'message' => 'berhasil di input'
         ]);
-
-        // return back()->withInput([
-        //     'success' => 'Pesan Berhasil',
-        //     'counter' => 3
-        // ]);
     }
 }

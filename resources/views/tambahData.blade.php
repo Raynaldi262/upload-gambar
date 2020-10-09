@@ -4,9 +4,15 @@
 Add Image
 @endsection
 <style>
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
     .card {
         text-align: center;
-        margin-left: 30%;
+        margin-left: auto;
+        margin-right: auto;
         margin-top: 10%;
     }
 </style>
@@ -20,7 +26,7 @@ Add Image
                         @csrf
                         <input type='hidden' name='doc_id' id='doc_id' value="{{$id}}">
                         <div class="col-sm-12 gambar">
-                            <img src="{{ asset('/storage/app/images/default.jpg')}}" class="img-tumbnail img-preview" width="100px">
+                            <img src="{{ asset('app/images/default.jpg')}}" class="img-tumbnail img-preview" width="200px">
                         </div>
                         <br>
                         <div class="col-sm-12">
@@ -45,24 +51,37 @@ Add Image
                     </a>
             </div>
         </div>
+
+        @if ($counter == 1)
+        <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+        </div>
+        @endif
+        @if ($counter == 6)
+        <div class="alert alert-warning alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+        </div>
+        @endif
+
+
     </div>
 
-    @if ($counter == 1)
-    <div class="alert alert-success alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>{{ $message }}</strong>
-    </div>
-    @endif
-
-    @if ($counter == 6)
-    <div class="alert alert-warning alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>{{ $message }}</strong>
-    </div>
-    @endif
-    </div>
 </body>
 <script>
+    // const nama = document.querySelector("#image");
+    // const namaLabel = document.querySelector(".custom-file-label");
+    // const imgPreview = document.querySelector(".img-preview");
+
+    // console.log(nama);
+    // console.log(namaLabel);
+    // console.log(imgPreview);
+
+    // console.log(namaLabel.textContent);
+
+    // console.log(nama.files[0]);
+
     function preview() {
         const nama = document.querySelector("#image");
         const namaLabel = document.querySelector(".custom-file-label");
@@ -72,6 +91,7 @@ Add Image
 
         const fileNama = new FileReader();
         fileNama.readAsDataURL(nama.files[0]);
+
 
         fileNama.onload = function(e) {
             imgPreview.src = e.target.result;
