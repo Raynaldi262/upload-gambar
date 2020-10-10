@@ -32,6 +32,8 @@ class GambarController extends Controller
 
     public function tambahData()
     {
+
+
         try {
             $docId = DB::select('select LPAD(substr(doc_id, 12, 5)+1,5,0) as doc_id from images order by doc_id desc limit 1');
 
@@ -43,7 +45,11 @@ class GambarController extends Controller
         }
         echo $docId;
 
+
+        // $gambar = DB::table('images')->where('doc_id', $docId)->get();
+
         return view('tambahData', [
+            'gambar' => $gambar,
             'id' => $docId,
             'counter' => 0,
             'message' => 'kosong'
@@ -93,11 +99,7 @@ class GambarController extends Controller
         } // end cari nama
 
         $path = storage_path('app\public\images\\' . $name);
-
-        // $request->image->storeAs('public/images', $name); // masukkan gambar ke folder images
         Image::make($request->image)->resize(300, 200)->save($path);
-
-        // Storage::disk('imgPath')->put($name, $image, 'public');
 
 
         if (!$request->session()->exists('data')) {
