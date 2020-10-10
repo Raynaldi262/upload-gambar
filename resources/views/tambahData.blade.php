@@ -26,7 +26,7 @@ Add Image
                         @csrf
                         <input type='hidden' name='doc_id' id='doc_id' value="{{$id}}">
                         <div class="col-sm-12 gambar">
-                            <img src="{{ asset('app/images/default.jpg')}}" class="img-tumbnail img-preview" width="200px">
+                            <img src="storage/images/default.jpg" class="img-tumbnail img-preview" width="200px">
                         </div>
                         <br>
                         <div class="col-sm-12">
@@ -65,36 +65,6 @@ Add Image
         </div>
         @endif
 
-
     </div>
 
 </body>
-<script>
-    // const nama = document.querySelector("#image");
-    // const namaLabel = document.querySelector(".custom-file-label");
-    // const imgPreview = document.querySelector(".img-preview");
-
-    // console.log(nama);
-    // console.log(namaLabel);
-    // console.log(imgPreview);
-
-    // console.log(namaLabel.textContent);
-
-    // console.log(nama.files[0]);
-
-    function preview() {
-        const nama = document.querySelector("#image");
-        const namaLabel = document.querySelector(".custom-file-label");
-        const imgPreview = document.querySelector(".img-preview");
-
-        namaLabel.textContent = nama.files[0].name;
-
-        const fileNama = new FileReader();
-        fileNama.readAsDataURL(nama.files[0]);
-
-
-        fileNama.onload = function(e) {
-            imgPreview.src = e.target.result;
-        };
-    }
-</script>

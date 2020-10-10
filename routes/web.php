@@ -23,8 +23,7 @@ Route::post('/upload', 'GambarController@insert');
 Route::view('login', 'login');
 Route::post('login', 'Login@index');
 Route::get('logout', 'Login@exit');
-
-
+ 
 // Route::post('/', function () {
 //     dd(request()->all());
 // });
